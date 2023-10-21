@@ -1,27 +1,41 @@
 import Movie from '../components/Movie';
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, ActivityIndicator, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { getMovies } from '../lib/api/movies';
 
 const HomeScreen = () => {
-  const [movies, setMovies] = useState(null)
+  const [isLoading, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+
+  const getData = async () => {
+    try {
+      setMovies(await getMovies())
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    getMovies().then((movies) => setMovies(movies))
-  })
+    getData();
+  }, []);
+
 
   return (
     <View>
-      <ScrollView className="flex-1 w-full px-4 gap-2">
-        {!!movies ? movies.map((movie) => (
-          <Movie key={movie.imdbID} data={movie} />
-        )) : (
-          <View className="flex items-center justify-center">
-            <Text>Cargando...</Text>
-          </View>
-        )}
-      </ScrollView>
+      {isLoading ? (
+        <ActivityIndicator size={"large"} />
+      ) : (
+        <ScrollView className="px-4">
+          {movies.map((movie) => (
+            <View className="my-4">
+              <Movie key={movie.imdbID} data={movie} />
+            </View>
+          ))}
+        </ScrollView>
+      )}
       <StatusBar style="auto" />
     </View>
   );
