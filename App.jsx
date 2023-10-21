@@ -30,7 +30,7 @@ function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
         <Tab.Screen name="Gallery" component={GalleryScreen} />
       </Tab.Navigator>
     </NavigationContainer>
