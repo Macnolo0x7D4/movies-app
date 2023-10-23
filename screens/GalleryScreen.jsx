@@ -10,7 +10,7 @@ const GalleryScreen = () => {
 
   const getData = async () => {
     try {
-      setMovies(await getMovies());
+      setMovies(await getMovies('star wars'));
     } catch (error) {
       console.error(error);
     } finally {

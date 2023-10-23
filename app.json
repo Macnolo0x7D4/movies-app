@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "super-pelis",
-    "slug": "super-pelis",
+    "name": "Star Wars Movies",
+    "slug": "starwars-movies",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
