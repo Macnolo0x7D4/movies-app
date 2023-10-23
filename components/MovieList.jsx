@@ -1,7 +1,12 @@
-import MoviePreview from '../components/MoviePreview';
-import { getMovies } from '../lib/api/movies';
-import { useEffect, useState } from 'react';
-import { ScrollView, ActivityIndicator, View, TouchableOpacity } from 'react-native';
+import MoviePreview from "../components/MoviePreview";
+import { getMovies } from "../lib/api/movies";
+import { useEffect, useState } from "react";
+import {
+  ScrollView,
+  ActivityIndicator,
+  View,
+  TouchableOpacity,
+} from "react-native";
 
 const MovieList = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
@@ -9,7 +14,7 @@ const MovieList = ({ navigation }) => {
 
   const getData = async () => {
     try {
-      setMovies(await getMovies('star wars'))
+      setMovies(await getMovies("star wars"));
     } catch (error) {
       console.error(error);
     } finally {
@@ -22,8 +27,11 @@ const MovieList = ({ navigation }) => {
   }, []);
 
   const goToDetail = (movie) => {
-    navigation.push('Movie Detail', { movieTitle: movie.Title, movieId: movie.imdbID })
-  }
+    navigation.push("Movie Detail", {
+      movieTitle: movie.Title,
+      movieId: movie.imdbID,
+    });
+  };
 
   return (
     <View>
@@ -33,7 +41,11 @@ const MovieList = ({ navigation }) => {
         <View>
           <ScrollView className="px-4">
             {movies.map((movie) => (
-              <TouchableOpacity key={movie.imdbID} onPress={() => goToDetail(movie)} className="my-4">
+              <TouchableOpacity
+                key={movie.imdbID}
+                onPress={() => goToDetail(movie)}
+                className="my-4"
+              >
                 <MoviePreview data={movie} />
               </TouchableOpacity>
             ))}
@@ -41,7 +53,7 @@ const MovieList = ({ navigation }) => {
         </View>
       )}
     </View>
-  )
-}
+  );
+};
 
 export default MovieList;

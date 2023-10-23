@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "format": "prettier --plugin-search-dir . --write ."
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.10",
@@ -16,6 +17,7 @@
     "expo": "~49.0.15",
     "expo-status-bar": "~1.6.0",
     "nativewind": "^2.0.11",
+    "prettier": "^3.0.3",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-dotenv": "^3.4.9",

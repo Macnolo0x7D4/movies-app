@@ -1,8 +1,8 @@
-import MoviePoster from '../components/MoviePoster'
-import { StatusBar } from 'expo-status-bar';
-import { ScrollView, View, ActivityIndicator } from 'react-native';
-import { getMovies } from '../lib/api/movies';
-import { useEffect, useState } from 'react';
+import MoviePoster from "../components/MoviePoster";
+import { StatusBar } from "expo-status-bar";
+import { ScrollView, View, ActivityIndicator } from "react-native";
+import { getMovies } from "../lib/api/movies";
+import { useEffect, useState } from "react";
 
 const GalleryScreen = () => {
   const [isLoading, setLoading] = useState(true);
@@ -10,7 +10,7 @@ const GalleryScreen = () => {
 
   const getData = async () => {
     try {
-      setMovies(await getMovies())
+      setMovies(await getMovies());
     } catch (error) {
       console.error(error);
     } finally {
@@ -36,6 +36,6 @@ const GalleryScreen = () => {
       <StatusBar style="auto" />
     </View>
   );
-}
+};
 
 export default GalleryScreen;
