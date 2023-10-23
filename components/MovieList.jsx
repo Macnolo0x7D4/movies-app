@@ -1,8 +1,7 @@
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import Movie from '../components/Movie';
+import MoviePreview from '../components/MoviePreview';
 import { getMovies } from '../lib/api/movies';
 import { useEffect, useState } from 'react';
-import { ScrollView, ActivityIndicator, View } from 'react-native';
+import { ScrollView, ActivityIndicator, View, TouchableOpacity } from 'react-native';
 
 const MovieList = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
@@ -10,7 +9,7 @@ const MovieList = ({ navigation }) => {
 
   const getData = async () => {
     try {
-      setMovies(await getMovies())
+      setMovies(await getMovies('star wars'))
     } catch (error) {
       console.error(error);
     } finally {
@@ -31,13 +30,15 @@ const MovieList = ({ navigation }) => {
       {isLoading ? (
         <ActivityIndicator size={"large"} />
       ) : (
-        <ScrollView className="px-4">
-          {movies.map((movie) => (
-            <TouchableOpacity onPress={() => goToDetail(movie)} className="my-4">
-              <Movie key={movie.imdbID} data={movie} />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        <View>
+          <ScrollView className="px-4">
+            {movies.map((movie) => (
+              <TouchableOpacity key={movie.imdbID} onPress={() => goToDetail(movie)} className="my-4">
+                <MoviePreview data={movie} />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
       )}
     </View>
   )
